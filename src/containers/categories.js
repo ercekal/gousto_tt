@@ -4,39 +4,49 @@ import { bindActionCreators } from 'redux';
 import { fetchCategories } from '../actions/index';
 
 class Categories extends Component {
-  // renderCategories(categoryData) {
-  //   const title = categoryData.title;
-  //
-  //     return (
-  //       <tr key={title}>
-  //         <th></td>
-  //         <td><Chart data={temps} color="orange" units="C"/></td>
-  //         <td><Chart data={press} color="red" units="hPa"/></td>
-  //         <td><Chart data={humids} color="blue" units="%"/></td>
-  //       </tr>
-  //     );
-  //   }
+
+  componentWillMount() {
+    this.props.fetchCategories()
+  }
+
+  componentDidMount() {
+    console.log(this.props);
+  }
 
   render() {
-    return (
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            // {this.props.categories.map(this.renderWeather)}
-            <th>City</th>
-            <th>Temperature (C)</th>
-            <th>Pressure (hPa)</th>
-            <th>Humidity (%)</th>
-          </tr>
-        </thead>
-        // <tbody>{this.props.weather.map(this.renderWeather)}</tbody>
-      </table>
-    );
+    if (!this.props.categories[0]) {
+      return(
+        <div>
+          Loading...
+        </div>
+      )
+    } else {
+      console.log(this.props.categories);
+      return (
+        <div>
+          <table>
+            <thead>
+              <tr>
+                {this.props.categories[0].map((category) => {
+                  return <th>
+                    <p key={category.title}>{category.title}</p>
+                  </th>
+                })}
+              </tr>
+            </thead>
+          </table>
+        </div>
+      )
+    }
   }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchCategories }, dispatch)
 }
 
 function mapStateToProps({ categories }){
   return { categories };
 }
 
-export default connect(mapStateToProps)(Categories);
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);
