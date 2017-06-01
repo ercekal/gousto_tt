@@ -21,5 +21,9 @@ class CategoryInfo extends Component {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectCategory }, dispatch)
 }
-
-export default connect(null, mapDispatchToProps)(CategoryInfo);
+function mapStateToProps(state) {
+  return {
+    selectedCategory: state.selectedCategory.selectedTitle
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryInfo);
