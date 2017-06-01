@@ -12,33 +12,27 @@ class Categories extends Component {
     this.props.fetchItems()
   }
 
-  componentDidMount() {
-    console.log(this.props)
-    console.log(this.state);
-  }
-
   renderItemList() {
-    if (this.props.selectedCategory.length === 1) {
-      return (
-        <ItemList category={this.props.selectedCategory} items={this.props.items} />
-      )
+    if (this.props.selectedCategory !== "") {
+      return <ItemList selectedCategoryTitle={this.props.selectedCategory} items={this.props.items} />
     }
   }
 
   render() {
-    if (!this.props.categories[0]) {
+    if (!this.props.categories) {
       return(
         <div>
           Loading...
         </div>
       )
     } else {
+      console.log(this.props);
       return (
         <div>
           <table>
             <thead>
               <tr>
-                {this.props.categories[0].map((category) => {
+                {this.props.categories.map((category) => {
                   return (
                     <th>
                       <CategoryInfo key={category.title} category={category} />
@@ -59,8 +53,12 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchCategories, fetchItems }, dispatch)
 }
 
-function mapStateToProps({ categories, items, selectedCategory }){
-  return { categories, items, selectedCategory };
+function mapStateToProps(state) {
+  return {
+    categories: state.categories.categories,
+    items: state.items.items,
+    selectedCategory: state.selectedCategory.selectedTitle
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);

@@ -1,9 +1,10 @@
-import { FETCH_SELECTED_ITEM } from '../actions/index'
+import { SELECTED_CATEGORY } from '../actions/index'
 
-export default function(state = [], action) {
+export default function(state = "", action) {
   switch (action.type) {
-    case FETCH_SELECTED_ITEM:
-      return [action.payload.data, ...state];
+    case SELECTED_CATEGORY:
+      return {...state, selectedTitle: action.payload}
+    default:
+      return state;
   }
-  return state;
 }

@@ -5,12 +5,11 @@ import { bindActionCreators } from 'redux';
 
 class CategoryInfo extends Component {
 
-  _categorySelect(title) {
-    this.props.selectCategory(title)
+  _categorySelect() {
+    this.props.selectCategory(this.props.category.title)
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <a href="#" onClick={this._categorySelect.bind(this)}><p style={{fontSize: 8}}>{this.props.category.title}</p></a>
@@ -23,8 +22,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectCategory }, dispatch)
 }
 
-function mapStateToProps({ categories, items, selectedCategory }){
-  return { selectedCategory };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryInfo);
+export default connect(null, mapDispatchToProps)(CategoryInfo);

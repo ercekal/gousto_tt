@@ -29,7 +29,7 @@ export function fetchItems() {
 }
 
 export function selectCategory(title) {
-  return {
+  return  {
     type: SELECTED_CATEGORY,
     payload: title
   }
