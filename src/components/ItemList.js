@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import ItemInfo from './ItemInfo'
 
-class ItemList extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      items: []
-    }
-  }
-
+export default class ItemList extends Component {
 
   render() {
-    console.log(this.props)
     return (
       <div>
         item List

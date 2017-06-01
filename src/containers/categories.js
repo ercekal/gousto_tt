@@ -1,34 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchCategories, fetchItems, fetchSelectedIt } from '../actions/index';
+import { fetchCategories, fetchItems } from '../actions/index';
 import ItemList from '../components/ItemList'
 import CategoryInfo from '../components/CategoryInfo'
 
 class Categories extends Component {
-
-  constructor() {
-    super()
-    this.state = {
-      selectCategory: ""
-    }
-  }
 
   componentWillMount() {
     this.props.fetchCategories()
     this.props.fetchItems()
   }
 
-  selectCategory(category) {
-    this.setState({
-      selectedCategory: category
-    })
+  componentDidMount() {
+    console.log(this.props)
+    console.log(this.state);
   }
 
   renderItemList() {
-    if (this.state.selectedCategory !== "") {
+    if (this.props.selectedCategory !== "") {
       return (
-        <ItemList category={this.state.selectedCategory} items={this.props.items} />
+        <ItemList category={this.props.selectedCategory} items={this.props.items} />
       )
     }
   }
@@ -49,7 +41,7 @@ class Categories extends Component {
                 {this.props.categories[0].map((category) => {
                   return (
                     <th>
-                      <CategoryInfo category={category} selectCategory={this.selectCategory.bind(this)}/>
+                      <CategoryInfo key={category.title} category={category} />
                     </th>
                   )
                 })}
@@ -67,8 +59,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchCategories, fetchItems }, dispatch)
 }
 
-function mapStateToProps({ categories, items }){
-  return { categories, items };
+function mapStateToProps({ categories, items, selectedCategory }){
+  return { categories, items, selectedCategory };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);
