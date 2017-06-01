@@ -1,26 +1,37 @@
 import React, { Component } from 'react';
+import { searchItems } from '../actions/index';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 class SearchBar extends Component {
-  
+
+  constructor() {
+    super()
+    this.state ={
+      term: ""
+    }
+  }
+
+  onSearchChange(event) {
+    this.props.searchItems(event.target.value)
+    this.setState({
+      term: event.target.value
+    })
+  }
+
   render() {
+    console.log("search bar")
+    console.log(this.props)
     return (
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>City</th>
-            <th>Temperature (C)</th>
-            <th>Pressure (hPa)</th>
-            <th>Humidity (%)</th>
-          </tr>
-        </thead>
-      </table>
+      <div>
+        <input value={this.state.term} onChange={this.onSearchChange.bind(this)}/>
+      </div>
     );
   }
 }
 
-function mapStateToProps({ categories }){
-  return { categories };
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ searchItems }, dispatch)
 }
 
-export default connect(mapStateToProps)(SearchBar);
+export default connect(null, mapDispatchToProps)(SearchBar);

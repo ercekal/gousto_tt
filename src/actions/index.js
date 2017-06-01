@@ -3,6 +3,7 @@ import axios from 'axios'
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const FETCH_ITEMS = 'FETCH_ITEMS';
 export const SELECTED_CATEGORY = 'SELECTED_CATEGORY';
+export const SEARCH_TERM = 'SEARCH_TERM';
 
 export function fetchCategories() {
   return dispatch => {
@@ -32,5 +33,12 @@ export function selectCategory(title) {
   return  {
     type: SELECTED_CATEGORY,
     payload: title
+  }
+}
+
+export function searchItems(term) {
+  return  {
+    type: SEARCH_TERM,
+    payload: term
   }
 }

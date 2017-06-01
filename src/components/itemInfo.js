@@ -16,7 +16,6 @@ export default class ItemInfo extends Component {
   }
 
   render() {
-    console.log(this.props.item.description)
     return (
       <div>
         <a href="#" onClick={this.showDescription.bind(this)}><p>{this.props.item.title}</p></a>

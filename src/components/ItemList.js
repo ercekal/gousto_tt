@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import ItemInfo from './ItemInfo'
+import { connect } from 'react-redux';
 
-export default class ItemList extends Component {
-  constructor() {
-    super()
-    this.state ={
-      selectedItems: []
-    }
-  }
+class ItemList extends Component {
 
   filterItemList() {
     var selectedItems = []
@@ -17,6 +12,19 @@ export default class ItemList extends Component {
       })
     })
     return selectedItems
+  }
+
+  filterSearchTerm(array) {
+    if (typeof(this.props.search) !== "undefined") {
+      var searchedItems = []
+      searchedItems = array.filter((item) => {
+        return (item.title.indexOf(this.props.search)!=-1 || item.description.indexOf(this.props.search)!=-1)
+      })
+      console.log(searchedItems)
+      return searchedItems
+    } else {
+      return array
+    }
   }
 
   renderFiltered(array) {
@@ -34,11 +42,20 @@ export default class ItemList extends Component {
         </div>
       )
     } else {
+      console.log(this.props);
       return (
         <div>
-          {this.renderFiltered(this.filterItemList())}
+          {this.renderFiltered(this.filterSearchTerm(this.filterItemList()))}
         </div>
       )
     }
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    search: state.search.searchTerm
+  }
+}
+
+export default connect(mapStateToProps)(ItemList);
