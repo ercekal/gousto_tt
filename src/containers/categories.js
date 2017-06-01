@@ -18,7 +18,7 @@ class Categories extends Component {
   }
 
   renderItemList() {
-    if (this.props.selectedCategory !== "") {
+    if (this.props.selectedCategory.length === 1) {
       return (
         <ItemList category={this.props.selectedCategory} items={this.props.items} />
       )

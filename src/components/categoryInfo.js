@@ -5,11 +5,15 @@ import { bindActionCreators } from 'redux';
 
 class CategoryInfo extends Component {
 
+  _categorySelect(title) {
+    this.props.selectCategory(title)
+  }
+
   render() {
     console.log(this.props);
     return (
       <div>
-        <a href="#" onClick={this.props.selectCategory(this.props.category.title)}><p style={{fontSize: 8}}>{this.props.category.title}</p></a>
+        <a href="#" onClick={this._categorySelect.bind(this)}><p style={{fontSize: 8}}>{this.props.category.title}</p></a>
       </div>
     )
   }
