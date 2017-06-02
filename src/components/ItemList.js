@@ -8,7 +8,7 @@ class ItemList extends Component {
     if (typeof(this.props.search) !== "undefined") {
       var searchedItems = []
       searchedItems = array.filter((item) => {
-        return (item.title.indexOf(this.props.search)!=-1 || item.description.indexOf(this.props.search)!=-1)
+        return (item.title.toLowerCase().indexOf(this.props.search)!=-1 || item.description.toLowerCase().indexOf(this.props.search)!=-1)
       })
       return searchedItems
     } else {

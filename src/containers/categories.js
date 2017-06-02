@@ -69,7 +69,6 @@ function mapStateToProps(state) {
     categories: state.categories.categories,
     items: state.items.items,
     selectedCategory: state.selectedCategory.selectedTitle,
-    search: state.search.searchTerm
   }
 }
 
