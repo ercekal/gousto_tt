@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchCategories, fetchItems } from '../actions/index';
 import ItemList from '../components/ItemList'
+import SearchBar from '../containers/search_bar';
 import CategoryInfo from '../components/CategoryInfo'
 
 class Categories extends Component {
@@ -42,6 +43,9 @@ class Categories extends Component {
               </tr>
             </thead>
           </table>
+          <div>
+            <SearchBar />
+          </div>
           {this.renderItemList()}
         </div>
       )

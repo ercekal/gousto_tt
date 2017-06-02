@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SearchBar from '../containers/search_bar';
 import Categories from '../containers/categories';
 
 export default class App extends Component {
@@ -7,7 +6,6 @@ export default class App extends Component {
     return (
       <div>
         <Categories />
-        <SearchBar />
       </div>
     );
   }

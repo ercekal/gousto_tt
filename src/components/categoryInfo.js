@@ -5,14 +5,29 @@ import { bindActionCreators } from 'redux';
 
 class CategoryInfo extends Component {
 
+  constructor() {
+    super()
+    this.state = {
+      fontWeight: 'normal'
+    }
+  }
+
   _categorySelect() {
     this.props.selectCategory(this.props.category.title)
+  }
+
+  _selectedCategory() {
+    if (this.props.selectedCategory === this.props.category.title) {
+      return 'bold'
+    } else {
+      return 'normal'
+    }
   }
 
   render() {
     return (
       <div>
-        <a href="#" onClick={this._categorySelect.bind(this)}><p style={{fontSize: 8}}>{this.props.category.title}</p></a>
+        <a href="#" onClick={this._categorySelect.bind(this)}><p style={{fontSize: 10, paddingRight: 5, fontWeight: this._selectedCategory() }}>{this.props.category.title}</p></a>
       </div>
     )
   }

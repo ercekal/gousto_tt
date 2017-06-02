@@ -20,7 +20,6 @@ class ItemList extends Component {
       searchedItems = array.filter((item) => {
         return (item.title.indexOf(this.props.search)!=-1 || item.description.indexOf(this.props.search)!=-1)
       })
-      console.log(searchedItems)
       return searchedItems
     } else {
       return array
@@ -42,7 +41,6 @@ class ItemList extends Component {
         </div>
       )
     } else {
-      console.log(this.props);
       return (
         <div>
           {this.renderFiltered(this.filterSearchTerm(this.filterItemList()))}

@@ -5,21 +5,30 @@ export default class ItemInfo extends Component {
   constructor() {
     super()
     this.state = {
-      showDesc: false
+      selected: false,
+
     }
   }
 
   showDescription() {
     this.setState({
-      showDesc: !this.state.showDesc
+      selected: !this.state.selected
     })
+  }
+
+  _selectedItem() {
+    if (this.state.selected === true) {
+      return "bold"
+    } else {
+      return "normal"
+    }
   }
 
   render() {
     return (
       <div>
-        <a href="#" onClick={this.showDescription.bind(this)}><p>{this.props.item.title}</p></a>
-        {this.state.showDesc && <p>{this.props.item.description}</p>}
+        <a href="#" onClick={this.showDescription.bind(this)}><p style={{fontWeight: this._selectedItem()}}>{this.props.item.title}</p></a>
+        {this.state.selected && <p>{this.props.item.description}</p>}
       </div>
     )
   }
