@@ -14,8 +14,15 @@ class Categories extends Component {
   }
 
   renderItemList() {
-    if (this.props.selectedCategory !== "") {
-      return <ItemList selectedCategoryTitle={this.props.selectedCategory} items={this.props.items} />
+    let allItems = this.props.items
+    let selectedItems = []
+    if (this.props.selectedCategory !== "" && typeof(allItems) !== "undefined" && allItems.length > 0) {
+      selectedItems = allItems.filter((item) => {
+        return item.categories.find((ele) => {
+          return ele.title === this.props.selectedCategory
+        })
+      })
+      return <ItemList selectedCategoryTitle={this.props.selectedCategory} items={selectedItems} />
     }
   }
 
@@ -61,7 +68,8 @@ function mapStateToProps(state) {
   return {
     categories: state.categories.categories,
     items: state.items.items,
-    selectedCategory: state.selectedCategory.selectedTitle
+    selectedCategory: state.selectedCategory.selectedTitle,
+    search: state.search.searchTerm
   }
 }
 

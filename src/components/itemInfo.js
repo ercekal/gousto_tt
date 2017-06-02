@@ -5,8 +5,7 @@ export default class ItemInfo extends Component {
   constructor() {
     super()
     this.state = {
-      selected: false,
-
+      selected: false
     }
   }
 

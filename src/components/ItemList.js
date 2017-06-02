@@ -4,16 +4,6 @@ import { connect } from 'react-redux';
 
 class ItemList extends Component {
 
-  filterItemList() {
-    var selectedItems = []
-    selectedItems = this.props.items.filter((item) => {
-      return item.categories.find((ele) => {
-        return ele.title === this.props.selectedCategoryTitle
-      })
-    })
-    return selectedItems
-  }
-
   filterSearchTerm(array) {
     if (typeof(this.props.search) !== "undefined") {
       var searchedItems = []
@@ -43,7 +33,7 @@ class ItemList extends Component {
     } else {
       return (
         <div>
-          {this.renderFiltered(this.filterSearchTerm(this.filterItemList()))}
+          {this.renderFiltered(this.filterSearchTerm(this.props.items))}
         </div>
       )
     }
