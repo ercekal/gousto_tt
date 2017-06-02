@@ -27,7 +27,7 @@ class ItemList extends Component {
     if(!this.props.items) {
       return (
         <div>
-          no items yet
+          Loading...
         </div>
       )
     } else {
@@ -42,7 +42,8 @@ class ItemList extends Component {
 
 function mapStateToProps(state) {
   return {
-    search: state.search.searchTerm
+    search: state.search.searchTerm,
+    selectedCategory: state.selectedCategory.selectedTitle
   }
 }
 
